@@ -1,0 +1,51 @@
+# HRET configuration -------------------------------------------------------
+# Every value below can be overridden from the command line, e.g.
+#   python scripts/train.py --config configs/hret.yaml --set train.epochs=50
+
+seed: 42
+device: auto
+
+data:
+  dir: data/sample
+  # A user is kept for evaluation only if it has at least this many
+  # interactions in total (leave-one-out needs 2 held-out items + history).
+  min_interactions: 3
+  # random: shuffle distinct businesses (default); temporal: two latest.
+  split_strategy: random
+
+model:
+  dim: 64
+  # Symmetric meta-paths used to build the HIN view of every node.
+  # The first and last node type must be identical.
+  meta_paths: [UBU, USU, URU, BUB, BSB]
+  walks_per_node: 8
+  walk_length: 30
+  window_size: 3
+  # metapath2vec pre-training
+  pretrain_epochs: 5
+  pretrain_batch_size: 512
+  pretrain_lr: 0.01
+  neg_samples: 5
+  # HRET
+  dropout: 0.2
+  hidden_dim: 128
+  scorer: mlp          # mlp | dot
+  fusion: attention    # attention | mean
+  use_id_embedding: false  # optional BPR-MF style residual; off in the reference model
+  use_bias: false          # optional user / business bias terms
+
+train:
+  epochs: 40
+  batch_size: 1024
+  lr: 0.001
+  weight_decay: 0.00001
+  l2_reg: 0.00001
+  grad_clip: 5.0
+  patience: 10
+  eval_every: 1
+
+evaluation:
+  ks: [5, 10]
+  # Full ranking over all businesses. Set to a positive integer to score
+  # against a random candidate subset (much faster on large catalogues).
+  candidate_pool: 0

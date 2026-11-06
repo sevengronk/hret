@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the ICSS 2022 paper."
+title: "HRET: Heterogeneous Information Network for Recommendation in Testing and Inspection"
+version: 0.1.0
+doi: 10.1109/ICSS55994.2022.00038
+year: 2022
+type: software
+authors:
+  - family-names: Zhang
+    given-names: Liwen
+  - family-names: Li
+    given-names: Weiping
+  - family-names: Mo
+    given-names: Tong
+  - family-names: Chu
+    given-names: Weijie
+license: MIT
+abstract: >-
+  Reference implementation of HRET, a meta-path aware heterogeneous information
+  network recommender for the testing and inspection industry.

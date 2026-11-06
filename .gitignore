@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+
+# Tooling caches
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Training artefacts
+runs/
+checkpoints/
+*.pt
+*.pth
+wandb/
+lightning_logs/
+
+# Data (keep the small bundled sample)
+data/raw/
+data/processed/
+!data/sample/
+
+# OS / editors
+.DS_Store
+.idea/
+.vscode/
+*.swp
